@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+#define ll long long
+#define endl '\n'
+
+using namespace std;
+
+int main(){
+    ll n;
+    cin>>n;
+    vector<ll>v;
+    ll total = 0;
+    for(ll i = 0;i<n; i++){
+        ll x;
+        cin>>x;
+        v.push_back(x);
+        total += x;
+    }
+    ll mini = INT_MAX;
+    for(ll i = 0; i < (1<<n); i++){
+        ll sum = 0;
+        for(ll j = 0; j < n; j++){
+            if(1<<j & i)
+            sum += v[j];
+        }
+       mini = min(mini , abs(total - sum - sum));
+    }
+    cout<<mini;
+}
