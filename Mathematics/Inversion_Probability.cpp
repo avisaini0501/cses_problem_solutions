@@ -1,0 +1,48 @@
+#include<bits/stdc++.h>
+#include<ext/pb_ds/assoc_container.hpp>
+#include<ext/pb_ds/tree_policy.hpp>
+#define int long long
+#define endl '\n'
+#define mod 1000000007
+#define pb push_back
+#define pii pair<int , int>
+#define vc vector
+#define vp vector<pair<int , int>>
+#define vi vector<int>
+#define vii vector<vector<<int>>
+#define loop(a , b) for(int i = a; i < b; i++)
+#define rep(a , b) for(int i = a; i <= b; i++)
+#define all(x) x.begin() , x.end()
+#define triplet pair<int , pair<int , int>>
+#define goog(tno) cout<<"Case #"<<tno<<": "
+#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL)
+using namespace std;
+using namespace __gnu_pbds;
+template <typename T> using ordered_set = tree<T, null_type, less<T> , rb_tree_tag, tree_order_statistics_node_update>;
+
+int32_t main(){
+    fast_io;
+    int n;
+    cin>>n;
+
+    int a[n];
+    loop(0 , n){
+        cin>>a[i];
+    }
+
+    long double ans = 0;
+
+    for(int i = 0; i < n; i++){
+        for(int j = 0; j < i; j++){
+            int k;
+            if(a[j] <= a[i]){
+                k = (a[j] * (a[j] - 1) / 2);
+            }
+            else{
+                k = (a[i] * (a[i] - 1) / 2) + (a[j] - a[i]) * a[i];
+            }
+            ans += (long double) k / (long double)(a[j] * a[i]);
+        }
+    }
+    cout<<fixed<<setprecision(6)<<ans;
+}
